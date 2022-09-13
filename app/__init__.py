@@ -9,9 +9,9 @@ app = Flask(__name__)
 if __name__ == '__main__':
     app.run(debug = True)
 
-@app.get("/")
-def index():
-    return "hello world"
+#@app.get("/")
+#def index():
+#    return "hello world"
 
 #import models dan routes
 #from app import models, routes
