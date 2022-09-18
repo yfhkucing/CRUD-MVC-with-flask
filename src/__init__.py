@@ -27,5 +27,6 @@ def create_app(test_config= None):
     db.init_app(app)
     return app
 
+#kebiasaan baik ;)
 if __name__ == '__main__':
-    app.run(debug = True)
+    create_app.run(debug= True)
