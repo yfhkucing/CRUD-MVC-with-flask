@@ -4,7 +4,7 @@ from src.database import db
 
 #applicatin factory flask
 #secret key ada di file .env
-#setup virtual enviroment ada di .flaskenv. biar ga usat setup ulang setiap buka terminal baru
+#setup virtual enviroment ada di .flaskenv biar ga usat setup ulang setiap buka terminal baru
 
 def create_app(test_config= None):
 
