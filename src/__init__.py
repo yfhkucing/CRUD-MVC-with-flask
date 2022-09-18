@@ -1,3 +1,4 @@
+from distutils.log import debug
 from flask import Flask
 import os
 from src.database import db
@@ -25,3 +26,6 @@ def create_app(test_config= None):
     db.app=app
     db.init_app(app)
     return app
+
+if __name__ == '__main__':
+    app.run(debug = True)
