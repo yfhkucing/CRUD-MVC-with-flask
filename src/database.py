@@ -1,19 +1,25 @@
+#setup database
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import string
 import random
+
 db = SQLAlchemy()
 
-
+#dalam database ada user dan bookmark
 class User(db.Model):
+    #property dari user
     id = db.Column(db.Integer, primary_key=True)
+    #unique = true agar tidak ada username yg sama, nullable = false agar tidak bisa diisi kosong
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.Text(), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, onupdate=datetime.now())
+    #untuk backward relation dengan bookmark
     bookmarks = db.relationship('Bookmark', backref="user")
 
+    #fungsi untuk representasi class User
     def __repr__(self) -> str:
         return 'User>>> {self.username}'
 
@@ -28,6 +34,7 @@ class Bookmark(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, onupdate=datetime.now())
 
+    #fungsi untuk menghasilkan short url
     def generate_short_characters(self):
         characters = string.digits+string.ascii_letters
         picked_chars = ''.join(random.choices(characters, k=3))
@@ -44,5 +51,6 @@ class Bookmark(db.Model):
 
         self.short_url = self.generate_short_characters()
 
+    #fungsi untuk representasi class bookmark
     def __repr__(self) -> str:
         return 'Boomark>>> {self.url}'
