@@ -1,7 +1,10 @@
 from flask import Flask
 import os
+from src.database import db
 
-#for configuration?
+#applicatin factory flask
+#secret key ada di file .env
+#setup virtual enviroment ada di .flaskenv. biar ga usat setup ulang setiap buka terminal baru
 
 def create_app(test_config= None):
 
@@ -11,15 +14,14 @@ def create_app(test_config= None):
         
     if test_config is None:
         app.config.from_mapping( 
-            SECRET_KEY='dev',
+            SECRET_KEY=os.environ.get("kucing"),
+            SQLALCHEMY_DATABASE_URI=os.environ.get("SQLALCHEMU_DB_URI")
             )
     
     else:
         app.config.from_mapping(test_config)
 
-    @app.get('/')
-
-    def halo():
-        return "hello world"
-
+    #inisialisasi database?
+    db.app=app
+    db.init_app(app)
     return app
