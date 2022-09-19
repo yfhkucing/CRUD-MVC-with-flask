@@ -1,6 +1,7 @@
 #isinya api endpoint (?)
 from flask import Blueprint
 #endpoint register
+#inisiasi blueprint
 auth = Blueprint("auth", __name__, url_prefix="/api/v1/auth")
 
 

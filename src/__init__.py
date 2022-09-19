@@ -2,6 +2,7 @@ from distutils.log import debug
 from flask import Flask
 import os
 from src.database import db
+from . import auth
 
 #applicatin factory flask
 #secret key ada di file .env
@@ -10,7 +11,12 @@ from src.database import db
 def create_app(test_config= None):
 
     app = Flask(__name__, instance_relative_config=True)
+    
+    #register blueprint
+    
+    app.register_blueprint(auth.auth)
 
+    return app
     # (general rule syntax : is None instead == None)
         
     if test_config is None:
@@ -25,4 +31,5 @@ def create_app(test_config= None):
     #inisialisasi database?
     db.app=app
     db.init_app(app)
+    
     return app
