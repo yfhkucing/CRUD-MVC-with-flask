@@ -14,7 +14,7 @@ def create_app(test_config= None):
     
     #register blueprint
     
-    app.register_blueprint(auth.auth)
+    app.register_blueprint(auth.bluePrint_)
 
     return app
     # (general rule syntax : is None instead == None)
