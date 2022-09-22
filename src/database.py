@@ -4,6 +4,8 @@ from datetime import datetime
 import string
 import random
 
+#ini inisiasi ORM, pake SQLalchemy
+#pelajarin lagi struktur database
 db = SQLAlchemy()
 
 #dalam database ada user dan bookmark

@@ -6,7 +6,7 @@ from . import auth
 
 #applicatin factory flask
 #secret key ada di file .env
-#setup virtual enviroment ada di .flaskenv biar ga usat setup ulang setiap buka terminal baru
+#setup virtual enviroment ada di .flaskenv biar ga usah setup ulang setiap buka terminal baru
 
 def create_app(test_config= None):
 
@@ -15,14 +15,14 @@ def create_app(test_config= None):
     #register blueprint
     
     app.register_blueprint(auth.bluePrint_)
-
-    return app
+    #return app
     # (general rule syntax : is None instead == None)
         
     if test_config is None:
         app.config.from_mapping( 
             SECRET_KEY=os.environ.get("kucing"),
-            SQLALCHEMY_DATABASE_URI=os.environ.get("SQLALCHEMY_DB_URI")
+            SQLALCHEMY_DATABASE_URI=os.environ.get("SQLALCHEMY_DB_URI"),
+            SQLALCHEMY_TRACK_MODIFICATIONS=False
             )
     
     else:
