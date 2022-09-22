@@ -46,8 +46,6 @@ def register():
     return jsonify({
         'message':'user created',
         'user' : {'username':username, 'email':email }
-    }),HTTP_201_CREATED
-
-    
+    }),HTTP_201_CREATED    
     
 
