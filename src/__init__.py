@@ -23,7 +23,8 @@ def create_app(test_config= None):
         app.config.from_mapping( 
             SECRET_KEY=os.environ.get("kucing"),
             SQLALCHEMY_DATABASE_URI=os.environ.get("SQLALCHEMY_DB_URI"),
-            SQLALCHEMY_TRACK_MODIFICATIONS=False
+            SQLALCHEMY_TRACK_MODIFICATIONS=False,
+            JWT_SECRET_KEY=os.environ.get('JWT_SECRET_KEY')
             )
     
     else:
