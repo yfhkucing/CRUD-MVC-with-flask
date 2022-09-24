@@ -9,6 +9,7 @@ from src.database import User,db
 #inisiasi blueprint
 bluePrint_ = Blueprint("bluePrint_", __name__, url_prefix="/api/v1/auth")
 
+#endpoind buat login
 @bluePrint_.post('/login')
 def login():
     email = request.json.get('email','')
@@ -35,7 +36,7 @@ def login():
     #kalo password salah
     return jsonify({'error': 'Wrong credentials'}), HTTP_401_UNAUTHORIZED
         
-#/api/v1/auth/register
+#endpoint buat register
 @bluePrint_.post('/register')
 def register():
     username = request.json['username']
