@@ -3,7 +3,7 @@ from flask import Flask
 import os
 from src.database import db
 from . import auth
-
+from flask_jwt_extended import JWTManager
 #applicatin factory flask
 #secret key ada di file .env
 #setup virtual enviroment ada di .flaskenv biar ga usah setup ulang setiap buka terminal baru
@@ -11,12 +11,13 @@ from . import auth
 def create_app(test_config= None):
 
     app = Flask(__name__, instance_relative_config=True)
-    
     #register blueprint
-    
     app.register_blueprint(auth.bluePrint_)
-    #return app
-    # (general rule syntax : is None instead == None)
+    #inisialisasi database
+    db.app=app
+    db.init_app(app)
+    #inisialisasi JWT
+    JWTManager(app)
         
     if test_config is None:
         app.config.from_mapping( 
@@ -28,8 +29,5 @@ def create_app(test_config= None):
     else:
         app.config.from_mapping(test_config)
 
-    #inisialisasi database?
-    db.app=app
-    db.init_app(app)
     
     return app
